@@ -9,22 +9,21 @@ import { SearchListComponent } from './search/search-list/search-list.component'
 import { ReserveComponent } from './reserve/reserve.component';
 import { LoginComponent } from './login/login.component';
 
+import { AuthGuard } from './services/auth.guard';
+
 const appRoutes: Routes = [
     { path: 'reserva', component: ReserveComponent },
-    { path: 'reserva/edit/:id', component: ReserveComponent },
+    { path: 'reserva/edit/:id', component: ReserveComponent, canActivate:[AuthGuard]},
     { path: 'login', component: LoginComponent },
     { path: 'pesquisa', loadChildren: 'app/search/search.module#SearchModule'},
-    { path: 'perfil', component: UserPerfilComponent },
-//    { path: 'configurar', component: UserPerfilComponent },
-//    { path: 'gerenciar', component: CursoNaoEncontradoComponent },
-//    { path: 'relatorio', component: CursoNaoEncontradoComponent },
-//    { path: 'relatorio/:id', component: CursoNaoEncontradoComponent },
-    { path: 'home', component: UserReserveComponent },
-    { path: '', component: UserReserveComponent }
+    { path: 'perfil', component: UserPerfilComponent, canActivate:[AuthGuard] },
+    { path: 'home', component: UserReserveComponent, canActivate:[AuthGuard] },
+    { path: '', component: UserReserveComponent, canActivate:[AuthGuard]  }
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
+    providers : [AuthGuard],
     exports: [RouterModule]
 })
 export class AppRoutingModule {}

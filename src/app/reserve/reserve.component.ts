@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReserveComponent implements OnInit {
   private typeClass = [];
+  private modalReserva;
   //DatePicker
   private startDate = new Date();
   private minDate = new Date();
@@ -23,6 +24,7 @@ export class ReserveComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.modalReserva.modal('open');
   }
 
 }

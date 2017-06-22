@@ -11,11 +11,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 
+import { ValidateService } from './services/validate.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth.guard';
 
 import { UserModule } from './user/user.module';
 import { SearchModule } from './search/search.module';
 import { ReserveModule } from './reserve/reserve.module';
 import { AppRoutingModule } from './app.routing.module';
+import { SplitGetPipe } from './split-get.pipe';
 
 
 @NgModule({
@@ -23,7 +27,8 @@ import { AppRoutingModule } from './app.routing.module';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    SplitGetPipe
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,7 @@ import { AppRoutingModule } from './app.routing.module';
     MdNativeDateModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ValidateService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

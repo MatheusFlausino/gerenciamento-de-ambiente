@@ -1,5 +1,5 @@
 <!-- Modal Structure -->
-  <div id="reservaModal" class="modal modal-fixed-footer">
+  <div id="reservaModal" class="modal modal-fixed-footer" #modalReserva>
     <div class="modal-content">
       <h4>Repetir</h4>
       <div class="form-reserva row">
@@ -84,10 +84,10 @@
             </div>
           </div>
           <div class="row">
-            <div class="col s3">
+            <div class="col s12 m3">
               <div div class="col s3">
                   <button [mdDatepickerToggle]="datepickerIn"></button>
-                  <md-datepicker [startAt]="startDate" #datepickerIn></md-datepicker>
+                  <md-datepicker [startAt]="startDate" [touchUi]="true" #datepickerIn></md-datepicker>
               </div> 
               <div div class="col s9">
                   <input name="dateSelectedIn" [mdDatepicker]="datepickerIn" 
@@ -95,27 +95,19 @@
                          [min]="minDate" required [(ngModel)]="minDateIn">
               </div>  
             </div>
-            <div class="col s2">
+            <div class="col s5 m3">
               <input  name="hourIn" type="time" id="hour-in" ngModel>
             </div>
             <span class="col s1">até</span>
-            <div class="col s3">
-              <div div class="col s3">
-                <button [mdDatepickerToggle]="datepickerOut"></button>
-                <md-datepicker [startAt]="startDate" #datepickerOut></md-datepicker>
-              </div> 
-              <div div class="col s9">
-                <input name="dateSelectedOut" [mdDatepicker]="datepickerOut" [mdDatepickerFilter]="myFilter" [min]="minDateIn" required ngModel>
-              </div>  
-            </div>
-            <div class=" col s2">
+            <div class=" col s5 m3">
               <input name="hourOut" type="Time"  id="hour-out" ngModel>
             </div>
           </div>
           <div class="row">
-            <div class="col s12 m5">
-              <input type="checkbox" class="filled-in" id="repeat"/>
-              <label for="repeat">Repetir</label>
+            <div class="col s12 m6">
+              <md-checkbox>
+                Repetir
+              </md-checkbox>
             </div>
             <div class="col s12 m5">
               Tipo da sala

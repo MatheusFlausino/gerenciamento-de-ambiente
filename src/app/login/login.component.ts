@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from './auth.service';
-import { User } from './user';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,19 +9,30 @@ import { User } from './user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private usuario: User = new User();
 
-  constructor(private authService: AuthService) {
-
-  }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
+    if(this.authService.loggedIn())
+      this.router.navigate(['/home'], {});
   }
 
-  onSubmit(form){
-    this.usuario.user = form.value.user;
-    this.usuario.pass = form.value.pass;
-    //console.log(this.usuario);    
-    this.authService.loginAuth(this.usuario);
+  onLoginSubmit(form) {
+    var user = {
+      username: form.value.user,
+      password: form.value.pass
+    };
+    console.log('Name: ' + form.value.user + ' password ' + form.value.pass);
+    this.authService.authenticateUser(user).subscribe( data => {
+      console.log(data);
+      if(data.success) {
+        console.log("Teste");
+        this.authService.storeUserData(data.token, data.user);
+        this.router.navigate(['/home'], {});
+      } else {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }

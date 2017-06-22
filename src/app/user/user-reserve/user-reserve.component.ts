@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-user-reserve',
@@ -12,8 +11,7 @@ export class UserReserveComponent implements OnInit {
   private events = [];
   private today = new Date();
 
-  constructor(app :  AppComponent) { 
-    this.user = app.getUser();
+  constructor() { 
     //Exemplo de Evets Date
     this.events = [
         {time_in:"8:20", time_out:"10:00", class:"Bloco A - 023", event_description:"IF64C - Análise de circuitos", users_door_unlock:"kas1dj2lk2sa;l96byrvg74b", duration:"2", color:"red lighten-2"},
