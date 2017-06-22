@@ -1,0 +1,35 @@
+<div class="grey lighten-2" style="min-height: 100%;">
+  <div class="row divider"></div>
+  <div class="container row">
+    <div class="col s12 m4 push-m8 right-align">
+      <a href="/pesquisa/calendario" class="btn"><i class="material-icons">today</i></a>
+      <a href="/pesquisa/lista" class="btn disabled"><i class="material-icons">view_list</i></a>
+    </div>
+    <div class="row hide-on-med-and-up"></div>
+    <div class="col s12 m6 offset-m2 pull-m4 center-align center-align">
+      <a class="btn left">
+        <i class="material-icons">keyboard_arrow_left</i>
+      </a>
+      <span class="flow-text hide-on-small-only">{{events[0].date}}</span>
+      <a class="btn right">
+        <i class="material-icons">keyboard_arrow_right</i>
+      </a>
+    </div>
+  </div>
+  <div class="container">
+    <!-- LISTA -->
+      <div class="list-calendar">
+        <div class="row column" *ngFor="let event of events">
+          <div class="col s12" *ngFor="let item of event.events">
+            <div class="col s4 m2 item" >
+              {{item.time_in + " - " + item.time_out}}
+            </div>
+            <div class="col s8 m10 item">
+              <span class="event-dot {{item.color}}"></span> {{item.event_description}}
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- FIM LISTA -->
+  </div>
+</div>

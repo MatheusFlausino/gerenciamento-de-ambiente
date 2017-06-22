@@ -1,0 +1,44 @@
+<!-- Modal Structure -->
+<form #f="ngForm"> 
+    <h4 md-dialog-title>Reserva de Hor&aacute;rio {{selectedBlock + ' ' + selectedClass}}</h4>      
+    <div md-dialog-content>
+        <div class="form-reserva row">
+            <div class="col s12 m10 offset-m1">
+                <label for="title">Titulo</label>
+                <input name="title" placeholder="Reunião" id="title" type="text" class="validate" required >
+            </div>
+            <div class="col s8 m3 offset-m1">
+                <div div class="col s9">
+                    <input name="date" [mdDatepicker]="datepickerReserve" required >
+                </div>
+                <div div class="col s3">
+                    <button [mdDatepickerToggle]="datepickerReserve"></button>
+                    <md-datepicker [startAt]="startDate" #datepickerReserve></md-datepicker>
+                </div>
+            </div>
+            <div class="col s6 m2 offset-m1">
+                <label for="hour-in">Entrada</label>
+                <input name="time_in" id="hour-in" class="in" type="time" required />
+            </div>
+            <div class="col s6 m2 offset-m1">
+                <label for="hour-out">Sa&iacute;da</label>
+                <input name="time_out" id="hour-out" class="out" type="time" required />
+            </div>
+        </div>
+        <div class="s10" style="margin-bottom: 20px">
+            <md-chip *ngFor="let chip of chipNames" selected>{{chip}}</md-chip>
+            <input type="text" name="userName" [mdAutocomplete]="completeName" (keyup.enter)="onChip(selectedName)" #selectedName>
+            <md-autocomplete #completeName="mdAutocomplete">
+                <md-option *ngFor="let option of filteredNames | async" [value]="option">
+                    {{option}}
+                </md-option>
+            </md-autocomplete>
+        <!--    <div name="user_unlock" class="chips chips-autocomplete"></div> -->
+        </div>
+    </div>
+    <div md-dialog-actions>
+        <button id="reserveSubmit" md-dialog-close="f" type="submit" class="waves-effect waves-light btn-flat">
+            <i class="material-icons right">send</i>Reservar
+        </button>
+    </div>
+</form>

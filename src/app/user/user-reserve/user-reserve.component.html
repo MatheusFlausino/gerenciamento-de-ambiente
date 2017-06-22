@@ -1,0 +1,29 @@
+<div class="grey lighten-2">
+  <div class="row divider"></div>
+  <div class="container row">
+    <p class="flow-text">Compromissos do dia: {{ today | date: 'dd/MM/yyyy'}}</p>
+  </div>
+</div>
+<div class=" container row">
+  <div class="col s12 m6" *ngFor="let event of events; let i = index">
+    <div class="card blue-grey darken-1 hoverable">
+      <div class="card-content white-text">
+        <a href="/reserva/edit/{{ codEvents[i] }}" class="btn-floating waves-effect waves-teal white right"><i class="tiny material-icons blue-grey-text text-darken-1">edit</i></a>
+        <span class="card-title truncate"> {{ event.event_description }} </span>
+        <p>
+          <i class="material-icons left">&#xE616;</i> {{ event.time_in + ' às ' + event.time_out }}
+        </p>
+        <div class="clearfix"></div>
+        <p>
+          <i class="material-icons left">&#xE7EE;</i> Sala: {{ event.class }}
+        </p>
+        <div class="clearfix"></div>
+        <p class="truncate">
+          <i class="material-icons left">&#xE7FB;</i> 
+          {{ event.users_door_unlock }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>

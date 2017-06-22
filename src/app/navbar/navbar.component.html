@@ -1,0 +1,47 @@
+<!-- Dropdown Structure -->
+<ul id="dropdown-menu" class="dropdown-content">
+  <li>
+    <a href="#!" class="dropdown-menu valign-wrapper">
+      {{ user.first_name }}
+      <img class="img-profile circle responsive-img" alt="perfil {{user.first_name}}" src="https://api.adorable.io/avatars/10/{{user.first_name +'-'+user.last_name}}.png"/>
+    </a>
+  </li>
+  <li><a href="#!">Gerenciar</a></li>
+  <li><a href="#!">Configura&ccedil;&otilde;es</a></li>
+  <li><a href="home">Suas reservas</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">Sair</a></li>
+</ul>
+<nav>
+  <div class=" container nav-wrapper">
+    <a href="#!" class="brand-logo"><img src="assets/images/logo.png" alt="logo"></a>
+    <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="pesquisa">Pesquisar Hor&aacute;rios</a></li>
+      <li><a href="reserva">Reservar</a></li>
+      <li><a href="relatorio">Relat&oacute;rio</a></li>
+      <li style="min-width: 160px">
+          <a class="dropdown-menu valign-wrapper" href="#!" data-activates="dropdown-menu">
+            {{ user.first_name }} 
+            <img class="img-profile circle responsive-img" alt="perfil {{user.first_name}}" src="https://api.adorable.io/avatars/10/{{user.first_name +'-'+user.last_name}}.png"/>            
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+      </li>
+    </ul>
+    <ul class="side-nav" id="mobile-nav">
+      <li>
+        <a href="/" class="row valign-wrapper">
+          <div class="col s6">
+            {{ user.first_name }}
+          </div>
+          <div class="col s5"> 
+            <img class="img-profile circle responsive-img" alt="perfil {{user.first_name}}" src="https://api.adorable.io/avatars/10/{{user.first_name +'-'+user.last_name}}.png"/>
+          </div>
+        </a>
+      </li>      
+      <li><a href="pesquisa">Pesquisar Hor&aacute;rios</a></li>
+      <li><a href="reserva">Reservar</a></li>
+      <li><a href="relatorio">Relat&oacute;rio</a></li>
+    </ul>
+  </div>
+</nav>

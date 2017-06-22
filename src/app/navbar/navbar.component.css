@@ -1,0 +1,10 @@
+.brand-logo img{
+    padding-top: 12px; 
+    width: 5.2em;
+}
+.img-profile{
+    margin-left: 5px;
+}
+.side-nav li:first-child{
+    margin-top: 1.5em
+}

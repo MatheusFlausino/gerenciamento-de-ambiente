@@ -1,0 +1,36 @@
+.list-calendar{
+    width: 100%;
+    display: flex;
+    border-radius: 2px;
+    padding-bottom: 40px;
+    position: relative;
+}
+.list-calendar .column{
+    float: left;
+    flex-grow: 1;
+    flex-basis: 0;
+    background: white;
+    border-right: 1px solid #e3e3e3;
+    z-index: 1;
+}
+
+.list-calendar .column .item {
+    padding: 5px;
+    border-top: 1px solid #e3e3e3;
+    position: relative;
+}
+.list-calendar .column .item:last-child {
+    border-left: 1px solid #e3e3e3;
+    padding-left: 15px;     
+}
+
+.event-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px; 
+    border-radius: 5px;
+}
+.event-dot {
+    background-color: #3a87ad;
+}

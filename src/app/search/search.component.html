@@ -1,0 +1,92 @@
+<!-- Search -->
+<div class=" container row">
+    <form #f="ngForm" (ngSubmit)="onSubmitSearch(f)">
+        <h4><i class="material-icons">search</i> Pesquisa</h4>
+        <div class="col s6 m2 offset-m1">
+            <label for="blockSelected">Bloco</label>
+            <md-select name="blockSelected" required id="blockSelected" [(ngModel)]="selectedBlock" (change)="onSelect(selectedBlock)" placeholder="Selecione" floatPlaceholder="never">
+                <md-option *ngFor="let item of classBlock" [value]="item.block">
+                    {{item.block}}
+                </md-option>
+            </md-select>
+        </div>
+        <div class="col s6 m2">
+            <label for="classSelected">Sala</label>
+            <md-select name="classSelected" required id="classSelected" [(ngModel)]="selectedClass" placeholder="Selecione" floatPlaceholder="never">
+                <md-option *ngFor="let itemClass of blockClass" [value]="itemClass.number">
+                    {{itemClass.number}}
+                </md-option>
+            </md-select>
+        </div>
+        <div class="row hide-on-med-and-up"></div>
+        <div class="col s8 m3 offset-m1">
+            <div div class="col s9">
+                <input name="dateSelected" [mdDatepicker]="myDatepicker" [mdDatepickerFilter]="myFilter" [min]="minDate" required ngModel>
+            </div>
+            <div div class="col s3">
+                <button [mdDatepickerToggle]="myDatepicker"></button>
+                <md-datepicker [startAt]="startDate" [touchUi]="true" #myDatepicker></md-datepicker>
+            </div>        
+        </div>
+        <div class="col s4 m2">
+            <button id="button__search"  type="submit" class="waves-effect waves-light btn-large"><i class="material-icons">search</i></button>
+        </div>
+    </form>
+</div>
+<!-- buttom fixed -->
+<div class="fixed-action-btn">
+    <a class="waves-effect waves-light btn-large red" href="#reserveModal">
+        <i class="material-icons right">query_builder</i> Reservar
+    </a>
+</div>
+<!-- Modal Structure -->
+<div id="reserveModal" class="modal modal-fixed-footer">
+    <form #form="ngForm" (ngSubmit)="onSubmitReserve(form)">    
+        <div class="modal-content">
+                <h4>Reserva de Hor&aacute;rio {{selectedBlock + ' ' + selectedClass}}</h4>
+                <div class="form-reserva row">
+                    <div class="col s12 m10 offset-m1">
+                        <label for="title">Titulo</label>
+                        <input name="title" placeholder="Reunião" id="title" type="text" class="validate" required ngModel>
+                    </div>
+                    <div class="col s8 m3 offset-m1">
+                        <div div class="col s9">
+                            <input name="date" [mdDatepicker]="datepickerReserve" required ngModel>
+                        </div>
+                        <div div class="col s3">
+                            <button [mdDatepickerToggle]="datepickerReserve"></button>
+                            <md-datepicker [startAt]="startDate" #datepickerReserve></md-datepicker>
+                        </div>
+                    </div>
+                    <div class="col s6 m2 offset-m1">
+                        <label for="hour-in">Entrada</label>
+                        <input name="time_in" id="hour-in" class="in" type="time" required ngModel/>
+                    </div>
+                    <div class="col s6 m2 offset-m1">
+                        <label for="hour-out">Sa&iacute;da</label>
+                        <input name="time_out" id="hour-out" class="out" type="time" required ngModel/>
+                    </div>
+                </div>
+                <div class="s10" style="margin-bottom: 20px">
+                    <md-chip-list>
+                        <md-chip *ngFor="let chip of chipNames" selected="true" color="">{{chip}}</md-chip>
+                    </md-chip-list>
+                    
+                    <input type="text" name="userName" [mdAutocomplete]="completeName" (keyup.enter)="onChip(selectedName)" #selectedName>
+                    <md-autocomplete #completeName="mdAutocomplete">
+                        <md-option *ngFor="let option of filteredName | async" [value]="option">
+                            {{option}}
+                        </md-option>
+                    </md-autocomplete>
+                <!--    <div name="user_unlock" class="chips chips-autocomplete"></div> -->
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button id="reserveSubmit" type="submit" class="modal-action waves-effect waves-light btn-flat">
+                <i class="material-icons right">send</i>Reservar
+            </button>
+        </div>
+    </form>
+</div>
+
+<router-outlet></router-outlet>

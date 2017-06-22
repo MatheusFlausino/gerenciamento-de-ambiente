@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    display: flex !important;
+    min-height: 100vh !important;
+    flex-direction: column !important;
+}
+
+main {
+    flex: 1 0 auto !important;
+}
+
+.footer{
+    position: relative;
+    margin-top: 50px;
+    bottom: 0;
+}
+
+.input[type=date]:focus + label,
+.input[type=time]:focus + label,
+.input[type=text]:focus + label,
+.input[type=email]:focus + label,
+.input[type=password]:focus + label {
+    color: #e91e63 !important;
+}
+
+.input[type=date]:focus,
+.input[type=time]:focus,
+.input[type=text]:focus,
+.input[type=email]:focus,
+.input[type=password]:focus {
+    border-bottom: 2px solid #e91e63 !important;
+    box-shadow: none !important;
+}

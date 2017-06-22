@@ -1,0 +1,17 @@
+<div class="container profile row">
+  <div class="row clearfix"></div>
+  <div class="grey lighten-2">
+    <div class="col s6 m3 offset-s3">
+      <img class="img-profile" alt="perfil {{user.first_name}}" src="https://api.adorable.io/avatars/140/{{user.first_name +'-'+user.last_name}}.png"/>
+      <span class="position-user">( {{ user.position }} )</span>
+    </div>
+    <div class="col m8">
+      <div class="col m6">
+        <h3 class="name">{{ user.first_name + ' ' + user.last_name }}</h3>
+      </div>
+      <div class="col m12">
+        <p>Departamento : {{ user.department }}</p>
+      </div>
+    </div>
+  </div>
+</div>
