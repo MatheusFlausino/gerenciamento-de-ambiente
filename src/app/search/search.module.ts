@@ -10,10 +10,13 @@ import { SearchCalendarComponent } from './search-calendar/search-calendar.compo
 import { SearchListComponent } from './search-list/search-list.component';
 import { SearchRoutingModule } from './search.routing.module';
 
+import { SearchService } from './search.service';
+
+
 @NgModule({
   imports: [
     CommonModule,
-    SearchRoutingModule,
+  //  SearchRoutingModule,
     FormsModule,
     MdInputModule,
     MdSelectModule,
@@ -23,8 +26,9 @@ import { SearchRoutingModule } from './search.routing.module';
   ],
   declarations: [
     SearchComponent,
-    SearchCalendarComponent, 
+    SearchCalendarComponent,
     SearchListComponent
-  ]
+  ],
+  providers: [SearchService]
 })
 export class SearchModule { }

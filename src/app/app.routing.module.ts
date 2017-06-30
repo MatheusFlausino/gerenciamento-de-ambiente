@@ -15,7 +15,14 @@ const appRoutes: Routes = [
     { path: 'reserva', component: ReserveComponent },
     { path: 'reserva/edit/:id', component: ReserveComponent, canActivate:[AuthGuard]},
     { path: 'login', component: LoginComponent },
-    { path: 'pesquisa', loadChildren: 'app/search/search.module#SearchModule'},
+    //{ path: 'pesquisa', loadChildren: 'app/search/search.module#SearchModule', canActivate:[AuthGuard]},
+    
+    { path: 'pesquisa', component: SearchCalendarComponent, canActivate:[AuthGuard]},
+    { path: 'pesquisa/lista', component: SearchListComponent , canActivate:[AuthGuard]},
+    { path: 'pesquisa/calendario', component: SearchCalendarComponent , canActivate:[AuthGuard]},
+    { path: 'pesquisa/lista/:id', component: SearchListComponent , canActivate:[AuthGuard]},
+    { path: 'pesquisa/calendario/:id', component: SearchCalendarComponent, canActivate:[AuthGuard] },
+
     { path: 'perfil', component: UserPerfilComponent, canActivate:[AuthGuard] },
     { path: 'home', component: UserReserveComponent, canActivate:[AuthGuard] },
     { path: '', component: UserReserveComponent, canActivate:[AuthGuard]  }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserReserveComponent } from './user-reserve/user-reserve.component';
 import { UserPerfilComponent } from './user-perfil/user-perfil.component';
 
+import { UserService } from './user.service';
 @NgModule({
   imports: [
     CommonModule

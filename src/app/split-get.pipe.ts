@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'splitGet'
 })
 export class SplitGetPipe implements PipeTransform {
-  transform(input: string, separator: string): any {
+  transform(input, separator){
     return input.split(separator)[0];
   }
 }

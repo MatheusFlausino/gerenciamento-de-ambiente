@@ -7,23 +7,23 @@ const logsSchema = mongoose.Schema({
     },
     dateEvents : [{
         date : Date,
-        event : String,
+        event_description : String,
         user_in : [],
-        user_out : []        
+        user_out : []
     }]
 });
 
 const Logs = module.exports = mongoose.model('Log', logsSchema);
 
-module.exports.getClassById = function(id, callback){
+module.exports.getLogById = function(id, callback){
     Logs.findById(id, callback)
 }
 
-module.exports.getClassByBlock = function(block, callback){
-    const query = {block: block}
+module.exports.getLogByRoomAndDate = function({room, date}, callback){
+    const query = {room: room, dateEvents: {"$in" : [{date: date}]}}
     Logs.findOne(query, callback)
 }
 
-module.exports.addRoom = function(newRoom, callback){
-    newRoom.save(callback);
+module.exports.addLog = function(newLog, callback){
+    newLogs.save(callback)
 }

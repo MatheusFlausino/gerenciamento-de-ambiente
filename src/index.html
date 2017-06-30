@@ -13,7 +13,8 @@
 </body>
 <script type="text/javascript">
 
-      $( document ).ready(function(){  
+      $( document ).ready(function(){
+        var val = false;  
         $(".dropdown-menu").dropdown();
         $(".button-collapse").sideNav({
             menuWidth: 250, 
@@ -21,7 +22,12 @@
             closeOnClick: true, 
             draggable: true 
           });
-
-      });
+        $( "#botaobom" ).click(function(){
+            val = !val;
+              if (val) {
+                $("#reservaModal").modal('open');
+              }
+            });
+        });
     </script>
 </html>

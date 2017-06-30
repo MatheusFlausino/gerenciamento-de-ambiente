@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {FormControl} from '@angular/forms';
 
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/operator/map';
+import { SearchService } from './search.service';
+import { SearchCalendarComponent } from './search-calendar/search-calendar.component';
+import { SearchListComponent } from './search-list/search-list.component';
 
 @Component({
   selector: 'app-search',
@@ -10,95 +11,41 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit{
+    @Output() onSubmit = new EventEmitter();
+
     private classBlock = [];
-    private blockAux = [];
     private blockClass;
-    //AutoComplete
-    private chipNames = [];
-    private names = [
-                      'Matheus Flausino', 
-                      'Lucas Silva', 
-                      'Nicholas Roder', 
-                      'Andre Poletto', 
-                      'Guilherme Gatto'
-                    ];
-    nameCtrl: FormControl;
-    filteredName: any;
+    //private classSelected;
+    //private blockSelected;
+    //private daySelected;
+
     //DatePicker
     private startDate = new Date();
     private minDate = new Date();
     myFilter = (datePicker: Date) => datePicker.getDay() > 0 && datePicker.getFullYear() <= 2017;
 
-    constructor(){
-      this.classBlock = [
-        {
-          block :"Bloco A",
-          classes:
-            [ 
-              {number: "022", responsible: ["Eu", "você", "nos"], type: "computador", permission_room: 4},
-              {number: "023", responsible: ["Eu", "você", "nos"], type: "computador", permission_room: 2},
-              {number: "024", responsible: ["Eu", "você", "nos"], type: "computador", permission_room: 3},
-              {number: "025", responsible: ["Eu", "você", "nos"], type: "computador", permission_room: 1},
-              {number: "026", responsible: ["Eu", "você", "nos"], type: "computador", permission_room: 0}
-            ]
-        },
-        {
-          block : "Bloco G",
-          classes: 
-            [
-              {number: "023", responsible: ["Eu", "você", "nos"], type: "computador", permission_room: 4},
-              {number: "023", responsible: ["Eu", "você", "nos"], type: "computador", permission_room: 4},
-              {number: "023", responsible: ["Eu", "você", "nos"], type: "computador", permission_room: 4},            
-            ],
-        },
-        {    
-          block :"Bloco H",
-          classes:
-            [
-              {number: "023", responsible: ["Eu", "você", "nos"], type: "computador", permission_room: 4},
-              {number: "023", responsible: ["Eu", "você", "nos"], type: "computador", permission_room: 4},
-              {number: "023", responsible: ["Eu", "você", "nos"], type: "computador", permission_room: 4},
-              {number: "023", responsible: ["Eu", "você", "nos"], type: "computador", permission_room: 4},            
-            ]
-        }
-      ];
+    constructor(private service : SearchService){
+      this.service.getBlock().subscribe( room => {
+          this.classBlock = room.room;
+        }, err => {
+          console.log(err);
+          return false;
+        } );
+      
     };
 
     ngOnInit() {
-      this.nameCtrl = new FormControl();
-      this.filteredName = this.nameCtrl.valueChanges
-                .startWith(null)
-                .map(name => this.filterName(name));
-    }
-
-    filterName(val: string) {
-      return val ? this.names.filter(s => new RegExp(`^${val}`, 'gi').test(s))
-                : this.names;
     }
 
     onSelect(blockId) {
-      this.blockAux = this.classBlock.filter((item)=> item.block == blockId);
-      this.blockClass = this.blockAux[0].classes;      
+      var blockAux = this.classBlock.filter((item)=> item.block == blockId);
+      this.blockClass = blockAux[0].classes;
     }
 
     onSubmitSearch(form){
-      console.log(form);
-      var dayWeek = form.value.dateSelected.getTime() - form.value.dateSelected.getDay()*86400000;
-      var arrayDate = [];
-      for (var i = 0; i < 7; i++) {
-        arrayDate[i] = new Date(dayWeek+86400000*i);
-      }
-      console.log(arrayDate);
-    }
-
-    onSubmitReserve(form){
-      console.log(form);
-    }
-    onChip(name){
-      this.chipNames[this.chipNames.length] = name.value;
-    }
-
-    setClasses(classes){
-      this.classBlock = classes;
+      //this.classSelected = form.value.classSelected;
+      //this.blockSelected = form.value.blockSelected;
+      //this.daySelected = form.value.dateSelected;
+      this.onSubmit.emit(form);
     }
 }

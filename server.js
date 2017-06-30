@@ -1,15 +1,19 @@
 // Get dependencies
-const express = require('express');
-const path = require('path');
-const http = require('http');
-const bodyParser = require('body-parser');
-const passport = require('passport');
+const express     = require('express');
+const path        = require('path');
+const http        = require('http');
+const bodyParser  = require('body-parser');
+const passport    = require('passport');
 const mongoose    = require('mongoose');
 const config      = require('./config/database');
 
 // Get our API routes
 const api = require('./server/routes/api');
 const users = require('./server/routes/user');
+const log = require('./server/routes/logs');
+const events = require('./server/routes/events');
+const room = require('./server/routes/room');
+
 const app = express();
 
 // Database connection
@@ -32,6 +36,9 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // Set our api routes
 app.use('/api', api);
 app.use('/api/user', users);
+app.use('/api/log', log);
+app.use('/api/event', events);
+app.use('/api/room', room);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

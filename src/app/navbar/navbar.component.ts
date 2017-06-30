@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
         console.log(err);
         return false;
       } );
+      console.log(JSON.parse(localStorage.getItem('user')))
   }
   
   onLogoutClick() {

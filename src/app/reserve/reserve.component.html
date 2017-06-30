@@ -1,5 +1,5 @@
-<!-- Modal Structure -->
-  <div id="reservaModal" class="modal modal-fixed-footer" #modalReserva>
+<!-- Modal Structure 
+  <div id="reservaModal" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>Repetir</h4>
       <div class="form-reserva row">
@@ -19,6 +19,7 @@
             <option value="0">1 Semana</option>
             <option value="1">2 Semanas</option>
             <option value="2">3 Semanas</option>
+            <option value="2">4 Semanas</option>
           </select>
         </div>
         <div class="col s6 m10 offset-m1">
@@ -44,17 +45,19 @@
           <input type="date" class="datepicker"/>
         </div>
         <div class="col s6 m4 offset-m2">
-          <span for="hour">Termino</span>
+          <span for="hour">Termino em</span>
           <br/>
-          <input class="with-gap" name="group3" type="radio" id="test5" checked />
-          <label for="test5">Nunca</label>
-          <br/>
-          <input class="with-gap" name="group3" type="radio" id="test5" checked />
-          <label for="test5">Em</label>
-          <input type="date" class="datepicker"/>
+          <div div class="col s3">
+              <button [mdDatepickerToggle]="datepickerRepeat"></button>
+              <md-datepicker [startAt]="startDate" [touchUi]="true" #datepickerRepeat></md-datepicker>
+          </div> 
+          <div div class="col s9">
+              <input name="dateSelectedIn" [mdDatepicker]="datepickerRepeat" 
+                      [mdDatepickerFilter]="myFilter"
+                      [min]="minDate" required [(ngModel)]="minDateIn">
+          </div>  
         </div>
       </div>
-
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action waves-effect waves-light btn-flat">
@@ -63,91 +66,172 @@
     </div>
   </div>
 
-<main>
-  <div class="grey lighten-2">
-    <div class="row divider"></div>
-    <div class="container row">
-      <p class="flow-text">Reserva de Sala</p>
-    </div>
+<div class="grey lighten-2">
+  <div class="row divider"></div>
+  <div class="container row">
+    <p class="flow-text">Reserva de Sala</p>
   </div>
-  <div class="container">
-    <div class="row">
-      <form  #formReserve="ngForm" (ngSubmit)="onSubmit(formReserve)">
-        <div class="col s12 m10 offset-m1">
-          <a class="waves-effect waves-light btn grey"><i class="material-icons left">arrow_back</i></a>
-          <button type="submit" class="waves-effect waves-light btn red"><i class="material-icons left">done</i>Salvar</button>
-          <div class="row clearfix"></div>
-          <div class="row">
-            <div class="col s8">
-              <label for="title" data-error="Errado" data-success="Correto">Título</label>
-              <input name="title" placeholder="Evento sem título" id="title" type="text" class="validate" autofocus ngModel>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col s12 m3">
-              <div div class="col s3">
-                  <button [mdDatepickerToggle]="datepickerIn"></button>
-                  <md-datepicker [startAt]="startDate" [touchUi]="true" #datepickerIn></md-datepicker>
-              </div> 
-              <div div class="col s9">
-                  <input name="dateSelectedIn" [mdDatepicker]="datepickerIn" 
-                         [mdDatepickerFilter]="myFilter"
-                         [min]="minDate" required [(ngModel)]="minDateIn">
-              </div>  
-            </div>
-            <div class="col s5 m3">
-              <input  name="hourIn" type="time" id="hour-in" ngModel>
-            </div>
-            <span class="col s1">até</span>
-            <div class=" col s5 m3">
-              <input name="hourOut" type="Time"  id="hour-out" ngModel>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col s12 m6">
-              <md-checkbox>
-                Repetir
-              </md-checkbox>
-            </div>
-            <div class="col s12 m5">
-              Tipo da sala
-              <md-select name="typeSelected" required id="typeSelected" [(ngModel)]="selectedType" placeholder="Selecione" floatPlaceholder="never">
-                <md-option *ngFor="let item of typeClass" [value]="item">
-                    {{item}}
-                </md-option>
-              </md-select>
-            </div>
-            <span class="col s12">Salas disponiveis:</span>
-            <table class="centered bordered">
-              <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Sala</th>
-                    <th>Tipo</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <input name="group1" type="radio" id="sala-K009" />
-                    <label for="sala-K009"></label>
-                  </td>
-                  <td>K009</td>
-                  <td>Lab. Comoutação</td>
-                </tr>
-                <tr>
-                  <td>
-                    <input name="group1" type="radio" id="sala-A103" />
-                    <label for="sala-A103"></label>
-                  </td>
-                  <td>A103</td>
-                  <td>Teórica</td>
-                </tr> 
-              </tbody>
-            </table>
+</div>-->
+<div class="row divider"></div>
+<div class="container">
+  <div class="row">
+    <form  #formReserve="ngForm" (ngSubmit)="onSubmit(formReserve, tab )">
+      <div class="col s12 m10 offset-m1">
+        <a href="javascript:window.history.back()" class="waves-effect waves-light btn grey"><i class="material-icons left">arrow_back</i></a>
+        <button type="submit" class="waves-effect waves-light btn red"><i class="material-icons left">done</i>Salvar</button>
+        <div class="row clearfix"></div>
+        <div class="row">
+          <div class="col s8">
+            <label for="title" data-error="Errado" data-success="Correto">Título</label>
+            <input name="title" placeholder="Evento sem título" id="title" type="text" class="validate" autofocus ngModel>
           </div>
         </div>
-      </form>
-    </div>
+        <div class="row">
+          <div class="col s12 m3">
+            <div div class="col s3">
+                <button [mdDatepickerToggle]="datepickerIn"></button>
+                <md-datepicker [startAt]="startDate" [touchUi]="true" #datepickerIn></md-datepicker>
+            </div> 
+            <div div class="col s9">
+                <input name="dateSelected" [mdDatepicker]="datepickerIn" 
+                        [mdDatepickerFilter]="myFilter"
+                        [min]="minDate" required [(ngModel)]="dateSelected">
+            </div>  
+          </div>
+          <div class="col s5 m3">
+            <input  name="hourIn" type="time" id="hour-in" [(ngModel)]="hourIn">
+          </div>
+          <span class="col s1">até</span>
+          <div class=" col s5 m3">
+            <input name="hourOut" type="Time"  id="hour-out" [(ngModel)]="hourOut">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <md-tab-group (selectChange)="onTab(tab)" #tab>
+              <md-tab label="Sem Repetição"></md-tab>
+              <md-tab label="Repetir">
+                <div class="grey lighten-4 col s12">
+                  <div class="form-reserva col s12">
+                    <br/>
+                    <div class="col s12 m5 offset-m1">
+                      Repetição
+                      <md-select name="repeatMain" id="repeatMain" [(ngModel)]="repeatMain" placeholder="Selecione" floatPlaceholder="never">
+                        <md-option [value]="0">Diaria</md-option>
+                        <md-option [value]="1">Semanal</md-option>
+                        <md-option [value]="2">Mensal</md-option>
+                      </md-select>
+                    </div>
+                    <div *ngIf="repeatMain == 1" class="col s8 m5 offset-m1">
+                      Repete a cada
+                      <md-select name="repeat" id="repeatWeek" [(ngModel)]="repeatWeek" placeholder="Selecione" floatPlaceholder="never">
+                        <md-option [value]="1">1 Semana</md-option>
+                        <md-option [value]="2">2 Semanas</md-option>
+                        <md-option [value]="3">3 Semanas</md-option>
+                        <md-option [value]="4">4 Semanas</md-option>
+                      </md-select>  
+                    </div>
+                    <div *ngIf="repeatMain == 2" class="col s8 m5 offset-m1">
+                      Repete a cada
+                      <md-select name="repeat" id="repeatWeek" [(ngModel)]="repeatWeek" placeholder="Selecione" floatPlaceholder="never">
+                        <md-option [value]="1">1 Mês</md-option>
+                        <md-option [value]="2">2 Meses</md-option>
+                        <md-option [value]="3">3 Meses</md-option>
+                        <md-option [value]="4">4 Meses</md-option>
+                      </md-select>  
+                    </div>
+                    <div *ngIf="repeatMain == 0" class="col s6 m10 offset-m1">
+                      <span for="hour">Repete aos </span>
+                      <input name="dayDom" type="checkbox" class="filled-in" id="domingo" ngModel/>
+                      <label for="domingo">D</label>
+                      <input name="daySeg" type="checkbox" class="filled-in" id="segunda" ngModel/>
+                      <label for="segunda">S</label>
+                      <input name="dayTer" type="checkbox" class="filled-in" id="terca" ngModel/>
+                      <label for="terca">T</label>
+                      <input name="dayQua" type="checkbox" class="filled-in" id="quarta" ngModel/>
+                      <label for="quarta">Q</label>
+                      <input name="dayQui" type="checkbox" class="filled-in" id="quinta" ngModel/>
+                      <label for="quinta">Q</label>
+                      <input name="daySex" type="checkbox" class="filled-in" id="sexta" ngModel/>
+                      <label for="sexta">S</label>
+                      <input name="daySab" type="checkbox" class="filled-in" id="sabado" ngModel/>
+                      <label for="sabado">S</label>
+                    </div>
+                    <div class="row clearfix"></div>
+                    <div class="col s6 m4 offset-m1">
+                      <span for="hour">Inicio</span>
+                      <br/>
+                      <div div class="col s3">
+                          <button [mdDatepickerToggle]="repeatIn"></button>
+                          <md-datepicker [startAt]="startDate" [touchUi]="true" #repeatIn></md-datepicker>
+                      </div> 
+                      <div div class="col s9">
+                          <input name="dateRepeatIn" [mdDatepicker]="repeatIn" 
+                                  [mdDatepickerFilter]="myFilter"
+                                  [min]="minDate" required [(ngModel)]="repeatDateIn">
+                      </div>
+                    </div>
+                    <div class="col s6 m4 offset-m1">
+                      <span for="hour">Termino em</span>
+                      <br/>
+                      <div div class="col s3">
+                          <button [mdDatepickerToggle]="repeatOut"></button>
+                          <md-datepicker [startAt]="startDate" [touchUi]="true" #repeatOut></md-datepicker>
+                      </div> 
+                      <div div class="col s9">
+                          <input name="dateRepeatOut" [mdDatepicker]="repeatOut" 
+                                  [mdDatepickerFilter]="myFilter"
+                                  [min]="repeatDateIn" required [(ngModel)]="repeatDateOut">
+                      </div>  
+                    </div>
+                  </div>
+                </div>  
+              </md-tab>
+            </md-tab-group>
+          </div>
+        </div>
+        <div class="row clearfix"></div>        
+        <div class="row">
+          <div class="col s12 m6">
+            <span>Salas disponíveis: <button class="waves-effect waves-light btn" type="button" id="verify" (click)="freeRoom(dateSelected, hourIn, hourOut)">Verificar</button> </span>            
+          </div>
+          <div class="col s12 m5">
+            Tipo da sala
+            <md-select name="typeSelected" id="typeSelected" [(ngModel)]="selectedType" (change)="onSelect(selectedType)" placeholder="Selecione" floatPlaceholder="never">
+              <md-option *ngFor="let item of typeClass" [value]="item">
+                  {{item}}
+              </md-option>
+              <md-option [value]="''">Todos</md-option>
+            </md-select>
+          </div> 
+          <table class="col s12 centered bordered">
+            <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Bloco</th>
+                  <th>Sala</th>
+                  <th>Tipo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of rooms">
+                <td>
+                  <input name="group" type="radio" id="{{item.block+'-'+item.number}}" value="{{item.block+'-'+item.number}}" ngModel/>
+                  <label for="{{item.block+'-'+item.number}}"></label>
+                </td>
+                <td>{{item.block}}</td>
+                <td>{{item.number}}</td>
+                <td>{{item.type}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="rooms.length < 1" class="col s12 center"> <span class="flow-text">Não há salas Disponiveis</span></div>          
+        </div>
+        <div class="row clearfix"></div>      
+        <a href="javascript:window.history.back()" class="waves-effect waves-light btn grey"><i class="material-icons left">arrow_back</i></a>
+        <button type="submit" class="waves-effect waves-light btn red"><i class="material-icons left">done</i>Salvar</button>
+        <div class="row clearfix"></div>
+      </div>
+    </form>
   </div>
-</main>
+</div>

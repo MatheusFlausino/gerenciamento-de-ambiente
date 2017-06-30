@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import {MdInputModule, MdSelectModule, MdDatepickerModule, MdCheckboxModule} from '@angular/material';
+import {MdInputModule, MdSelectModule, MdDatepickerModule, MdCheckboxModule, MdTabsModule} from '@angular/material';
 
-import { ReserveComponent } from './reserve.component'
+import { ReserveComponent } from './reserve.component';
+import { ReserveService } from './reserve.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -12,10 +14,12 @@ import { ReserveComponent } from './reserve.component'
     MdSelectModule,
     MdInputModule,
     MdDatepickerModule,
-    MdCheckboxModule
+    MdCheckboxModule,
+    MdTabsModule
   ],
   declarations: [
   	ReserveComponent
-  ]
+  ],
+  providers: [ReserveService]
 })
 export class ReserveModule { }

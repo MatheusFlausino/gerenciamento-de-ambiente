@@ -5,7 +5,7 @@
     <li>
       <a href="#!" class="dropdown-menu valign-wrapper">
         {{ user | splitGet: ' ' }}
-        <img class="img-profile circle responsive-img" alt="perfil {{user | splitGet: ' '}}" src="https://api.adorable.io/avatars/10/{{ user | splitGet: ' ' }}.png"/>
+        <img class="img-profile circle responsive-img" alt="perfil {{user | splitGet: ' '}}" src="https://api.adorable.io/avatars/10/{{ user }}.png"/>
       </a>
     </li>
     <li><a href="perfil">Suas reservas</a></li>
@@ -22,8 +22,8 @@
         <li><a href="relatorio">Relat&oacute;rio</a></li>
         <li style="min-width: 160px">
             <a class="dropdown-menu valign-wrapper" href="#!" data-activates="dropdown-menu">
-              {{ user | splitGet:' ' }} 
-              <img class="img-profile circle responsive-img" alt="perfil {{user | splitGet:' '}}" src="https://api.adorable.io/avatars/10/{{user | splitGet: ' ' }}.png"/>            
+              {{ user | splitGet:' ' }}
+              <img class="img-profile circle responsive-img" alt="perfil {{user | splitGet:' '}}" src="https://api.adorable.io/avatars/10/{{user }}.png"/>            
               <i class="material-icons right">arrow_drop_down</i>
             </a>
         </li>
@@ -35,7 +35,7 @@
               {{ user | splitGet:' ' }}
             </div>
             <div class="col s5"> 
-              <img class="img-profile circle responsive-img" alt="perfil {{user | splitGet:' '}}" src="https://api.adorable.io/avatars/10/{{user | splitGet: ' '}}.png"/>
+              <img class="img-profile circle responsive-img" alt="perfil {{user | splitGet:' '}}" src="https://api.adorable.io/avatars/10/{{user }}.png"/>
             </div>
           </a>
         </li>      

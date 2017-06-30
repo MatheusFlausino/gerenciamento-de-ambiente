@@ -1,3 +1,5 @@
+<app-search (onSubmit)="onSubmitSearch($event)" ></app-search>
+
 <div class="grey lighten-2" style="min-height: 100%;">
   <div class="row divider"></div>
   <div class="container row">
@@ -7,10 +9,10 @@
     </div>
     <div class="row hide-on-med-and-up"></div>
     <div class="col s12 m6 offset-m2 pull-m4 center-align center-align">
-      <a class="btn left">
+      <a class="btn left" (click) = onPrev()>
         <i class="material-icons">keyboard_arrow_left</i>
       </a>
-      <a class="btn right">
+      <a class="btn right" (click) = onNext()>
         <i class="material-icons">keyboard_arrow_right</i>
       </a>
     </div>
@@ -30,12 +32,12 @@
             <h3 class="header ng-binding">{{dates.date}}</h3>
             <div class="item" *ngFor="let time of hours">
                 <div *ngFor="let event of dates.events">
-                <div class="horario size1" *ngIf="event.time_in == time">
-                    <div class="event {{'size'+event.duration}} {{event.color}} hoverable">
-                    <h4 class="truncate"><i class="material-icons">event</i></h4>
-                    <p class="ng-binding">{{event.event_description}}</p>
+                    <div class="horario size1" *ngIf="event.time_in == time">
+                        <div class="event {{'size'+event.duration}} {{event.color}} hoverable">
+                        <h4 class="truncate"><i class="material-icons">event</i></h4>
+                        <p class="ng-binding">{{event.description}}</p>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>

@@ -3,9 +3,7 @@ const bcrypt    = require('bcryptjs');
 const config    = require('../../config/database');
 
 const UserSchema = mongoose.Schema({
-  name: {
-    type: String
-  },
+  name: { type: String },
   email: {
     type: String,
     required: true
@@ -18,28 +16,13 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  position: {
-      type: String
-  },
-  permition : {
-      type: String
-  },
-  department : {
-      type: String
-  },
-  token : {
-      type : String
-  },
-  dateEvents : [{
-    date : Date,
-    event : [String]
-  }],
-  temp_permition_date: {
-      type: Date
-  },
-  temp_permition_old: {
-      type: String
-  } 
+  position: { type: String },
+  permition : { type: String },
+  department : { type: String },
+  token : { type : String },
+  dateEvents : [{}],
+  temp_permition_date: { type: Date },
+  temp_permition_old: { type: String }
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
@@ -68,5 +51,20 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
     if(err) throw err;
     callback(null, isMatch);
   });
+}
 
+module.exports.updateEvent = function(ra, event, calback){
+    User.update(
+        { username: ra },
+        {  $push:{
+                dateEvents : { $each: event }
+            }
+        },
+        { upsert: true },
+        calback
+        );
+}
+
+module.exports.getAll = function(callback){
+  User.find({}, { username: 1, name: 1, _id: 1 }, callback);
 }
